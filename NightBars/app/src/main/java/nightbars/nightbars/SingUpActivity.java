@@ -1,8 +1,7 @@
 package nightbars.nightbars;
 
-/**
- * Created by Miguel on 25/04/2017.
- */
+import android.support.v4.app.FragmentActivity;
 
-public class SingUpActivity {
+public class SingUpActivity extends FragmentActivity {
+
 }
