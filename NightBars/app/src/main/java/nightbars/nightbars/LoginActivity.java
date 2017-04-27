@@ -13,11 +13,14 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import nightbars.nightbars.app.ConexionDB;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private String IP = "sql8.freesqldatabase.com:3306";
+    private String dataBase = "/sql8170846";
 
     @InjectView(R.id.input_email)
     EditText emailText;
@@ -71,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         // TODO: Implement authentication logic here.
+        new ConexionDB(getApplicationContext()).execute("loginUser", IP, dataBase, email, password);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -104,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         loginButton.setEnabled(true);
-        finish();
+        //finish();
     }
 
     public void onLoginFailed() {

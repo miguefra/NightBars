@@ -1,6 +1,7 @@
 package nightbars.nightbars;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.ResultSet;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -68,12 +71,14 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = nameText.getText().toString();
+        String fname = nameText.getText().toString();
+        String lname = nameText.getText().toString();
+        String username = nameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
-        new ConexionDB(getApplicationContext()).signUpUser(IP, dataBase, name, email, password);
+        new ConexionDB(getApplicationContext()).execute("signUpUser", IP, dataBase, fname, lname, username, email, password);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -91,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
+        //finish();
     }
 
     public void onSignupFailed() {
