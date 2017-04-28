@@ -1,7 +1,5 @@
 package nightbars.nightbars;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,13 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.ResultSet;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import nightbars.nightbars.app.ConexionDB;
+import nightbars.nightbars.app.ConexionDBSignUp;
+import nightbars.nightbars.helper.TaskCallback;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements TaskCallback {
     private static final String TAG = "SignupActivity";
     private String IP = "sql8.freesqldatabase.com:3306";
     private String dataBase = "/sql8170846";
@@ -65,31 +62,24 @@ public class SignUpActivity extends AppCompatActivity {
 
         signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
-
         String fname = nameText.getText().toString();
         String lname = nameText.getText().toString();
         String username = nameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-        new ConexionDB(getApplicationContext()).execute("signUpUser", IP, dataBase, fname, lname, username, email, password);
+        new ConexionDBSignUp(SignUpActivity.this, this).execute(IP, dataBase, fname, lname, username, email, password);
 
-        new android.os.Handler().postDelayed(
+        /*new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
                         onSignupSuccess();
                         // onSignupFailed();
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 3000);*/
     }
 
 
@@ -102,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Ooops! Login failed", Toast.LENGTH_LONG).show();
 
-        signupButton.setEnabled(true);
+        //signupButton.setEnabled(true);
     }
 
     public boolean validate() {
@@ -134,5 +124,9 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    public void done() {
+        finish();
     }
 }

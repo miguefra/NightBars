@@ -1,6 +1,5 @@
 package nightbars.nightbars;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,10 +12,9 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import nightbars.nightbars.app.ConexionDB;
+import nightbars.nightbars.app.ConexionDBLogin;
 
 public class LoginActivity extends AppCompatActivity {
-
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private String IP = "sql8.freesqldatabase.com:3306";
@@ -62,38 +60,29 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        loginButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
+        //loginButton.setEnabled(false);
 
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        // TODO: Implement authentication logic here.
-        new ConexionDB(getApplicationContext()).execute("loginUser", IP, dataBase, email, password);
+        new ConexionDBLogin(LoginActivity.this).execute(IP, dataBase, email, password);
 
-        new android.os.Handler().postDelayed(
+        /*new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
                         onLoginSuccess();
                         // onLoginFailed();
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 3000);*/
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
-                // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
                 this.finish();
             }
@@ -114,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-        loginButton.setEnabled(true);
+        //loginButton.setEnabled(true);
     }
 
     public boolean validate() {
