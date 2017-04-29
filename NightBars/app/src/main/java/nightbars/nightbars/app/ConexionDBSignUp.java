@@ -36,6 +36,7 @@ public class ConexionDBSignUp extends AsyncTask<String, Integer, Integer> {
             conn = DriverManager.getConnection("jdbc:mysql://" + strings[0] + strings[1], "sql8170846", "6mgd7pf7cJ");
 
             // TODO: Comprobar que no exista ese correo.
+            // TODO: Comprobar que no exista el username.
             Statement estado = conn.createStatement();
             System.out.println("Conexion establecida");
             String peticion = "INSERT INTO User(fname, lname, username, email, pass) VALUES('"+ strings[2] + "', '" + strings[3] + "', '"+ strings[4] + "', '" + strings[5] +"', '"+ strings[6] + "')";

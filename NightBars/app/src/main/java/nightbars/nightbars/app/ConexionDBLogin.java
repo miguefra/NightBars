@@ -2,6 +2,7 @@ package nightbars.nightbars.app;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -11,17 +12,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import nightbars.nightbars.MenuActivity;
 import nightbars.nightbars.R;
+import nightbars.nightbars.SignUpActivity;
+import nightbars.nightbars.helper.SessionManager;
+import nightbars.nightbars.helper.TaskCallback;
 
 public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
     private Context context;
+    private TaskCallback mCallback;
     private final ProgressDialog progressDialog;
+    private SessionManager sessionManager;
 
-    public ConexionDBLogin(Context context) {
+    public ConexionDBLogin(Context context, TaskCallback callback) {
         this.context = context;
+        this.mCallback = callback;
         progressDialog = new ProgressDialog(this.context, R.style.AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
+
+        sessionManager = new SessionManager(this.context);
     }
 
     @Override
@@ -63,13 +73,19 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
                     tvPEGI.setText(Integer.toString(result.getInt("PEGI")));
                     tvPrecio.setText(Float.toString(result.getFloat("precio")));*/
                     Toast.makeText(context, "Login correcto!", Toast.LENGTH_LONG).show();
-                    // TODO: Cambiar de Activity.
                 }
             }else{
                 Toast.makeText(context, "Se ha producido un error.",Toast.LENGTH_LONG).show();
             }
 
+            sessionManager.setLogin(true);
+            sessionManager.setUsername(result.getString("username"));
+
+            Intent intent = new Intent(this.context, SignUpActivity.class);
+            this.context.startActivity(intent);
+
             progressDialog.dismiss();
+            mCallback.done();
         } catch (SQLException e) {
             e.printStackTrace();
         }

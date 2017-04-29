@@ -19,8 +19,12 @@ public class SignUpActivity extends AppCompatActivity implements TaskCallback {
     private String IP = "sql8.freesqldatabase.com:3306";
     private String dataBase = "/sql8170846";
 
-    @InjectView(R.id.input_name)
-    EditText nameText;
+    @InjectView(R.id.input_fname)
+    EditText fnameText;
+    @InjectView(R.id.input_lname)
+    EditText lnameText;
+    @InjectView(R.id.input_username)
+    EditText usernameText;
     @InjectView(R.id.input_email)
     EditText emailText;
     @InjectView(R.id.input_password)
@@ -62,9 +66,9 @@ public class SignUpActivity extends AppCompatActivity implements TaskCallback {
 
         signupButton.setEnabled(false);
 
-        String fname = nameText.getText().toString();
-        String lname = nameText.getText().toString();
-        String username = nameText.getText().toString();
+        String fname = fnameText.getText().toString();
+        String lname = lnameText.getText().toString();
+        String username = usernameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
@@ -98,15 +102,31 @@ public class SignUpActivity extends AppCompatActivity implements TaskCallback {
     public boolean validate() {
         boolean valid = true;
 
-        String name = nameText.getText().toString();
+        String fname = fnameText.getText().toString();
+        String lname = lnameText.getText().toString();
+        String username = usernameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
-            nameText.setError("Really?? At least 3 characters!");
+        if (fname.isEmpty()) {
+            fnameText.setError("Please, put your First Name.");
             valid = false;
         } else {
-            nameText.setError(null);
+            fnameText.setError(null);
+        }
+
+        if (lname.isEmpty()) {
+            lnameText.setError("Eey, put your Last Name too, please.");
+            valid = false;
+        } else {
+            lnameText.setError(null);
+        }
+
+        if (username.isEmpty() || username.length() < 3) {
+            usernameText.setError("Really?? At least 3 characters!");
+            valid = false;
+        } else {
+            usernameText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {

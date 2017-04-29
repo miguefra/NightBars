@@ -13,12 +13,15 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import nightbars.nightbars.app.ConexionDBLogin;
+import nightbars.nightbars.helper.SessionManager;
+import nightbars.nightbars.helper.TaskCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements TaskCallback {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private String IP = "sql8.freesqldatabase.com:3306";
     private String dataBase = "/sql8170846";
+    private SessionManager sessionManager;
 
     @InjectView(R.id.input_email)
     EditText emailText;
@@ -31,9 +34,18 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // TODO: Implementar sesiones y guardar el usuario.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        if (sessionManager.isLoggedIn()) {
+            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+            startActivityForResult(intent, REQUEST_SIGNUP);
+            finish();
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        new ConexionDBLogin(LoginActivity.this).execute(IP, dataBase, email, password);
+        new ConexionDBLogin(LoginActivity.this, this).execute(IP, dataBase, email, password);
 
         /*new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -127,5 +139,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    public void done() {
+        finish();
     }
 }
