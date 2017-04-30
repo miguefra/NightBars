@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
         sessionManager = new SessionManager(getApplicationContext());
 
         if (sessionManager.isLoggedIn()) {
-            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+            Intent intent = new Intent(getApplicationContext(), PlacesListActivity.class);
             startActivityForResult(intent, REQUEST_SIGNUP);
             finish();
         }

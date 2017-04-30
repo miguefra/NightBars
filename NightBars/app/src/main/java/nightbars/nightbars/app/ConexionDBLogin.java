@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import nightbars.nightbars.MenuActivity;
+import nightbars.nightbars.PlacesListActivity;
 import nightbars.nightbars.R;
 import nightbars.nightbars.SignUpActivity;
 import nightbars.nightbars.helper.SessionManager;
@@ -45,7 +46,7 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
 
             Statement estado = conn.createStatement();
             System.out.println("Conexion establecida");
-            String peticion = "SELECT pass FROM User WHERE email='" + strings[2] + "' AND pass='" + strings[3] + "'";
+            String peticion = "SELECT username FROM User WHERE email='" + strings[2] + "' AND pass='" + strings[3] + "'";
             rs = estado.executeQuery(peticion);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,20 +73,23 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
                     tvValoracion.setText(Float.toString(result.getFloat("valoracion")));
                     tvPEGI.setText(Integer.toString(result.getInt("PEGI")));
                     tvPrecio.setText(Float.toString(result.getFloat("precio")));*/
+
                     Toast.makeText(context, "Login correcto!", Toast.LENGTH_LONG).show();
+
+                    sessionManager.setLogin(true);
+                    sessionManager.setUsername(result.getString("username"));
+
+                    Intent intent = new Intent(this.context, PlacesListActivity.class);
+                    this.context.startActivity(intent);
+
+                    mCallback.done();
                 }
             }else{
                 Toast.makeText(context, "Se ha producido un error.",Toast.LENGTH_LONG).show();
             }
 
-            sessionManager.setLogin(true);
-            sessionManager.setUsername(result.getString("username"));
-
-            Intent intent = new Intent(this.context, SignUpActivity.class);
-            this.context.startActivity(intent);
-
             progressDialog.dismiss();
-            mCallback.done();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
