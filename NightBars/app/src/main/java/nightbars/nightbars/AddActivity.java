@@ -65,7 +65,7 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
     }
 
     public void onAddPlaceFailed() {
-        Toast.makeText(getBaseContext(), "Ooops! Somethins failed, try again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ooops! Something failed, try again.", Toast.LENGTH_LONG).show();
 
         addPlaceButton.setEnabled(true);
     }
@@ -93,7 +93,6 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
             typeText.setError(null);
         }
 
-        // TODO: Comprobar si no pones nada que valor tiene.
         if (price.isEmpty() || Integer.parseInt(price) < 1 || Integer.parseInt(price) > 5) {
             priceText.setError("Put a price or between 1 and 5");
             valid = false;
@@ -108,8 +107,7 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
             locationText.setError(null);
         }
 
-        // TODO: Comprobar si no pones nada que valor tiene.
-            if (score.isEmpty() || Integer.parseInt(score) < 1 || Integer.parseInt(score) > 5) {
+        if (score.isEmpty() || Integer.parseInt(score) < 1 || Integer.parseInt(score) > 5) {
             scoreText.setError("Between 1 and 5, please!");
             valid = false;
         } else {

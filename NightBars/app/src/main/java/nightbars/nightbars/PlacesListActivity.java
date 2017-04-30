@@ -3,6 +3,8 @@ package nightbars.nightbars;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,13 +16,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.InjectView;
+import nightbars.nightbars.controllers.ListMenuController;
 import nightbars.nightbars.helper.SessionManager;
+import nightbars.nightbars.model.Place;
+import nightbars.nightbars.presenters.RecyclerViewOnItemClickListener;
+import nightbars.nightbars.views.RVAdapter;
 
 public class PlacesListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SessionManager sessionManager;
+    private RecyclerView recyclerView;
+    private ListMenuController listMenuController;
+    private RVAdapter adapter;
 
     @InjectView(R.id.nav_header_username)
     TextView navHeaderUsername;
@@ -33,6 +44,20 @@ public class PlacesListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         sessionManager = new SessionManager(getApplicationContext());
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        adapter = new RVAdapter(new RecyclerViewOnItemClickListener(){
+            @Override
+            public void onClick(View view, int position) {
+                printDetails(position);
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+
+        RecyclerView.LayoutManager llm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +80,8 @@ public class PlacesListActivity extends AppCompatActivity
 
         // TODO: Hacer que funcione.
         //this.navHeaderUsername.setText(sessionManager.getUsername());
+
+        listMenuController = new ListMenuController(this);
     }
 
     @Override
@@ -118,5 +145,24 @@ public class PlacesListActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void printDetails(int id) {
+        Intent intent = new Intent(this, LocalActivity.class);
+        //intent.putExtra(LocalActivity.PERSON_ID, id);
+        startActivity(intent);
+    }
+
+    public void paintPlaces(List<Place> place){
+        // Pintamos la lista de places
+        adapter.setplaces(place);
+        adapter.notifyDataSetChanged();
+        //recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.listMenuController.getPlace();
     }
 }

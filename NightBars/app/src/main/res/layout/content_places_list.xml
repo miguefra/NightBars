@@ -13,4 +13,19 @@
     tools:context="nightbars.nightbars.PlacesListActivity"
     tools:showIn="@layout/app_bar_places_list">
 
+    <LinearLayout
+        android:id="@+id/upperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
