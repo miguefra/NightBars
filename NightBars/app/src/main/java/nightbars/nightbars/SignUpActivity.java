@@ -94,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity implements TaskCallback {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Ooops! Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ooops! SignUp failed", Toast.LENGTH_LONG).show();
 
         //signupButton.setEnabled(true);
     }

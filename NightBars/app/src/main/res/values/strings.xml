@@ -8,7 +8,16 @@
     <string name="create_account">Create Account</string>
     <string name="already_member">Already a member? Login</string>
     <string name="login">Login</string>
-    <string name="title_activity_places_list">PlacesListActivity</string>
+
+    <string name="title_activity_places_list">Menu</string>
+    <string name="title_activity_add">Add Place</string>
+
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="price">Price</string>
+    <string name="location">Location</string>
+    <string name="score">Score</string>
+    <string name="add_place">Add Place!</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
