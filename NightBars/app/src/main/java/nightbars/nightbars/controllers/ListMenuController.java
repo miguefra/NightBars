@@ -1,5 +1,6 @@
 package nightbars.nightbars.controllers;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import java.sql.ResultSet;
@@ -14,15 +15,41 @@ import nightbars.nightbars.model.Place;
 public class ListMenuController extends AppCompatActivity {
     private Place place;
     private List<Place> placeList;
-    private PlacesListActivity activity;
+    private Context context;
+    private static ListMenuController instance;
+    private PlacesListActivity placesListActivity;
 
-    public ListMenuController(PlacesListActivity activity) {
+    public ListMenuController(Context context) {
         placeList = new ArrayList<>();
-        this.activity = activity;
+        this.context = context;
     }
 
+    public ListMenuController(Context context, PlacesListActivity placesListActivity) {
+        placeList = new ArrayList<>();
+        this.context = context;
+        this.placesListActivity = placesListActivity;
+    }
+
+    public static ListMenuController getInstance(Context context) {
+        if (instance == null) {
+            instance = new ListMenuController(context);
+        }
+
+        return instance;
+    }
+
+    public static ListMenuController getInstance(Context context, PlacesListActivity placesListActivity) {
+        if (instance == null) {
+            instance = new ListMenuController(context, placesListActivity);
+        }
+
+        return instance;
+    }
+
+
+    // TODO: No buscar siempre de BBDD.
     public void getPlace() {
-        new ConexionDBListMenu(this.activity, new ConexionDBListMenu.RequestCallback() {
+        new ConexionDBListMenu(this.context, new ConexionDBListMenu.RequestCallback() {
             @Override
             public void onSuccess(ResultSet places) throws SQLException {
                 placeList = new ArrayList<>();
@@ -38,13 +65,18 @@ public class ListMenuController extends AppCompatActivity {
                     placeList.add(place);
                 } while (places.next());
 
-                activity.paintPlaces(placeList);
+
+                placesListActivity.paintPlaces(placeList);
             }
 
             @Override
             public void onFail(String message) {
-
+                // TODO: Completar.
             }
         }).execute();
+    }
+
+    public List<Place> getPlaceList() {
+        return this.placeList;
     }
 }

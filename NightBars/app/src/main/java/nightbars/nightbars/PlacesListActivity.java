@@ -81,7 +81,7 @@ public class PlacesListActivity extends AppCompatActivity
         // TODO: Hacer que funcione.
         //this.navHeaderUsername.setText(sessionManager.getUsername());
 
-        listMenuController = new ListMenuController(this);
+        listMenuController = ListMenuController.getInstance(this, this);
     }
 
     @Override
@@ -149,11 +149,11 @@ public class PlacesListActivity extends AppCompatActivity
 
     private void printDetails(int id) {
         Intent intent = new Intent(this, LocalActivity.class);
-        //intent.putExtra(LocalActivity.PERSON_ID, id);
+        intent.putExtra(LocalActivity.PLACE_POSITION, id);
         startActivity(intent);
     }
 
-    public void paintPlaces(List<Place> place){
+    public void paintPlaces(List<Place> place) {
         // Pintamos la lista de places
         adapter.setplaces(place);
         adapter.notifyDataSetChanged();
