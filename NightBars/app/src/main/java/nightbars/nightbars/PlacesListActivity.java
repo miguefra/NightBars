@@ -81,7 +81,7 @@ public class PlacesListActivity extends AppCompatActivity
         // TODO: Hacer que funcione.
         //this.navHeaderUsername.setText(sessionManager.getUsername());
 
-        listMenuController = ListMenuController.getInstance(this, this);
+        this.listMenuController = ListMenuController.getInstance(PlacesListActivity.this, this);
     }
 
     @Override

@@ -78,16 +78,6 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
         String password = passwordText.getText().toString();
 
         new ConexionDBLogin(LoginActivity.this, this).execute(IP, dataBase, email, password);
-
-        /*new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        //progressDialog.dismiss();
-                    }
-                }, 3000);*/
     }
 
     @Override

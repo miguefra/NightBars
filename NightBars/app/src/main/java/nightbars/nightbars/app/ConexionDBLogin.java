@@ -22,14 +22,14 @@ import nightbars.nightbars.helper.TaskCallback;
 public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
     private Context context;
     private TaskCallback mCallback;
-    private final ProgressDialog progressDialog;
+    public final ProgressDialog progressDialog;
     private SessionManager sessionManager;
 
     public ConexionDBLogin(Context context, TaskCallback callback) {
         this.context = context;
         this.mCallback = callback;
         progressDialog = new ProgressDialog(this.context, R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
         progressDialog.setMessage("Authenticating...");
 
         sessionManager = new SessionManager(this.context);
@@ -64,6 +64,7 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
 
     @Override
     protected void onPostExecute(ResultSet result) {
+        progressDialog.dismiss();
         try {
             if (result != null){
                 if (!result.next()) {
@@ -84,12 +85,9 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
 
                     mCallback.done();
                 }
-            }else{
-                Toast.makeText(context, "Se ha producido un error.",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(context, "Se ha producido un error.", Toast.LENGTH_LONG).show();
             }
-
-            progressDialog.dismiss();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
