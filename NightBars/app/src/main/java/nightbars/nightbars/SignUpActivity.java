@@ -36,6 +36,10 @@ public class SignUpActivity extends AppCompatActivity implements TaskCallback {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        //Hide action bar
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.inject(this);

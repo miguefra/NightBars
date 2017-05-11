@@ -34,6 +34,10 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        //Hide action bar
+        getSupportActionBar().hide();
+
         // TODO: Implementar sesiones y guardar el usuario.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
