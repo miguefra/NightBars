@@ -74,6 +74,13 @@ public class LocalActivity extends AppCompatActivity {
         paintDetails(ListMenuController.getInstance(this).getPlaceList().get(position));
     }
 
+    public void comoLlegar(View view) {
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        //intent.putExtra(InfoActivity.INFO, info);
+        startActivity(intent);
+        finish();
+    }
+
     /*private class ReviewsAdapter extends BaseAdapter {
 
         private List<String> reviews;
