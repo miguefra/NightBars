@@ -1,5 +1,6 @@
 package nightbars.nightbars;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,8 +25,8 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
     EditText typeText;
     @InjectView(R.id.input_price)
     EditText priceText;
-    @InjectView(R.id.input_location)
-    EditText locationText;
+    /*@InjectView(R.id.input_location)
+    EditText locationText;*/
     @InjectView(R.id.input_score)
     EditText scoreText;
     @InjectView(R.id.btn_addPlace)
@@ -58,10 +59,10 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
         String name = nameText.getText().toString();
         String type = typeText.getText().toString();
         String price = priceText.getText().toString();
-        String location = locationText.getText().toString();
+        //String location = locationText.getText().toString();
         String score = scoreText.getText().toString();
 
-        new ConexionDBAddPlace(AddActivity.this, this).execute(IP, dataBase, name, type, price, location, score);
+        new ConexionDBAddPlace(AddActivity.this, this).execute(IP, dataBase, name, type, price, "location", score);
     }
 
     public void onAddPlaceFailed() {
@@ -76,7 +77,7 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
         String name = nameText.getText().toString();
         String type = typeText.getText().toString();
         String price = priceText.getText().toString();
-        String location = locationText.getText().toString();
+        //String location = locationText.getText().toString();
         String score = scoreText.getText().toString();
 
         if (name.isEmpty()) {
@@ -100,12 +101,12 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
             priceText.setError(null);
         }
 
-        if (location.isEmpty()) {
+        /*if (location.isEmpty()) {
             locationText.setError("Enter a location, please!");
             valid = false;
         } else {
             locationText.setError(null);
-        }
+        }*/
 
         if (score.isEmpty() || Integer.parseInt(score) < 1 || Integer.parseInt(score) > 5) {
             scoreText.setError("Between 1 and 5, please!");
@@ -118,6 +119,13 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
     }
 
     public void done() {
+        finish();
+    }
+
+    public void location(View view) {
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        //intent.putExtra(InfoActivity.INFO, info);
+        startActivity(intent);
         finish();
     }
 }

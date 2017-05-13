@@ -20,6 +20,7 @@ import nightbars.nightbars.model.Place;
 public class LocalActivity extends AppCompatActivity {
 
     public static final String PLACE_POSITION = "PLACE_POSITION";
+    public static final String PLACE_NAME = "PLACE_NAME";
     private static int position;
     //private PeopleDetailPresenter presenter;
     private TextView name;
@@ -30,6 +31,8 @@ public class LocalActivity extends AppCompatActivity {
     private ListView photos;
     private ListView reviews;
     //ReviewsAdapter adapter;
+
+    private String placeName;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -61,7 +64,8 @@ public class LocalActivity extends AppCompatActivity {
 
     public void paintDetails(Place place) {
 
-        name.setText(place.getName());
+        placeName = place.getName();
+        name.setText(placeName);
         type.setText(place.getType());
 
         //adapter.setReviews(place.getReviews());
@@ -76,7 +80,7 @@ public class LocalActivity extends AppCompatActivity {
 
     public void comoLlegar(View view) {
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-        //intent.putExtra(InfoActivity.INFO, info);
+        intent.putExtra(LocalActivity.PLACE_NAME, placeName);
         startActivity(intent);
         finish();
     }
