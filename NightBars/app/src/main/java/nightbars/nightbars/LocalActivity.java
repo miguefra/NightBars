@@ -36,6 +36,10 @@ public class LocalActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
+
+        //Hide action bar
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
         Intent intent = getIntent();
