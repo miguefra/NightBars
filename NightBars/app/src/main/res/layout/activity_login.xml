@@ -7,18 +7,20 @@
     tools:context="nightbars.nightbars.LoginActivity"
     android:background="#ffffff">
 
+
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fitsSystemWindows="true"
-        tools:layout_editor_absoluteY="-119dp"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="56dp"
+            android:paddingTop="230dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
@@ -29,22 +31,15 @@
                 android:layout_gravity="center_horizontal" />-->
 
             <!-- Email Label -->
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="108dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/logo2"
-                tools:layout_editor_absoluteX="-66dp"
-                tools:layout_editor_absoluteY="609dp" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginBottom="8dp"
                 android:background="#ffffff">
+
                 <EditText android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,25 +64,33 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_login"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="42dp"
                 android:layout_gravity="center_horizontal"
                 android:padding="12dp"
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:background="#80d4ff"/>
+                android:background="@drawable/botton2"/>
 
             <TextView android:id="@+id/link_signup"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:text="No account yet? Create one"
                 android:gravity="center"
+                android:textColor="#90caff"
                 android:textSize="16dip"/>
 
         </LinearLayout>
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/title2"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="30dp" />
 
 
 </android.support.constraint.ConstraintLayout>
