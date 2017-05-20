@@ -81,7 +81,7 @@ public class PlacesListActivity extends AppCompatActivity
         // TODO: Hacer que funcione.
         //this.navHeaderUsername.setText(sessionManager.getUsername());
 
-        this.listMenuController = ListMenuController.getInstance(PlacesListActivity.this, this);
+        listMenuController = ListMenuController.getInstance(PlacesListActivity.this, this);
     }
 
     @Override
@@ -151,6 +151,7 @@ public class PlacesListActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        this.listMenuController.getPlace();
+
+        listMenuController.getPlace();
     }
 }

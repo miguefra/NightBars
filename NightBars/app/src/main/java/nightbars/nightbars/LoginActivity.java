@@ -136,6 +136,8 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
     }
 
     public void done() {
+        Intent intent = new Intent(getApplicationContext(), PlacesListActivity.class);
+        startActivity(intent);
         finish();
     }
 }

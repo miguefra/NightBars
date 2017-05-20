@@ -19,12 +19,12 @@ public class ConexionDBListMenu extends AsyncTask<String, Integer, ResultSet> {
     private final ProgressDialog progressDialog;
     private RequestCallback callback;
 
-    public ConexionDBListMenu(Context context, final RequestCallback callback) {
+    public ConexionDBListMenu(Context context, RequestCallback callback) {
         this.context = context;
         this.callback = callback;
-        progressDialog = new ProgressDialog(this.context, R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
+        progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading Places...");
+        progressDialog.setCancelable(false);
     }
 
     @Override

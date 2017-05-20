@@ -69,7 +69,7 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
             if (result != null){
                 if (!result.next()) {
                     Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     /*tvGenero.setText(result.getString("genero"));
                     tvValoracion.setText(Float.toString(result.getFloat("valoracion")));
                     tvPEGI.setText(Integer.toString(result.getInt("PEGI")));
@@ -85,7 +85,7 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
 
                     mCallback.done();
                 }
-            }else {
+            } else {
                 Toast.makeText(context, "Se ha producido un error.", Toast.LENGTH_LONG).show();
             }
         } catch (SQLException e) {
