@@ -1,10 +1,16 @@
 package nightbars.nightbars;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,8 +22,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+import org.apache.commons.net.ftp.*;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import nightbars.nightbars.controllers.ListMenuController;
 import nightbars.nightbars.helper.SessionManager;
@@ -34,12 +49,16 @@ public class PlacesListActivity extends AppCompatActivity
     private RVAdapter adapter;
 
     @InjectView(R.id.nav_header_username)
-    TextView navHeaderUsername;
+    public TextView navHeaderUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places_list);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll()
+                .build();
+        StrictMode.setThreadPolicy(policy);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,7 +72,6 @@ public class PlacesListActivity extends AppCompatActivity
                 printDetails(position);
             }
         });
-
         recyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager llm = new LinearLayoutManager(this);
@@ -78,10 +96,56 @@ public class PlacesListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // TODO: Hacer que funcione.
-        //this.navHeaderUsername.setText(sessionManager.getUsername());
-
         listMenuController = ListMenuController.getInstance(PlacesListActivity.this, this);
+
+        try {
+            Boolean b = this.connectFTP();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private Boolean connectFTP(/*String server, int portNumber,
+                                        String user, String password, String filename, File localFile*/)
+            throws IOException {
+        FTPClient ftp = null;
+
+        try {
+            ftp = new FTPClient();
+
+            ftp.connect("ftp://ftp.byethost31.com", 21);
+
+            System.out.println("Connected. Reply: " + ftp.getReplyString());
+            ftp.login("b31_20293105", "nightbars12345");
+
+            System.out.println("Que pedo");
+            System.out.println("login");
+
+            /*ftp.setFileType(FTP.BINARY_FILE_TYPE);
+            Log.d(LOG_TAG, "Downloading");
+            ftp.enterLocalPassiveMode();
+
+            OutputStream outputStream = null;
+            boolean success = false;
+            try {
+                outputStream = new BufferedOutputStream(new FileOutputStream(
+                        localFile));
+                success = ftp.retrieveFile(filename, outputStream);
+            } finally {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            }
+
+            return success;*/
+            return true;
+        } finally {
+            if (ftp != null) {
+                ftp.logout();
+                ftp.disconnect();
+            }
+        }
     }
 
     @Override
@@ -146,6 +210,10 @@ public class PlacesListActivity extends AppCompatActivity
         adapter.setplaces(place);
         adapter.notifyDataSetChanged();
         //recyclerView.setAdapter(adapter);
+
+        this.navHeaderUsername = (TextView)findViewById(R.id.nav_header_username);
+        this.navHeaderUsername.setText(sessionManager.getUsername());
+        this.navHeaderUsername.setTextColor(Color.BLACK);
     }
 
     @Override

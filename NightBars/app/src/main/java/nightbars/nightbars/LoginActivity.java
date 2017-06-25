@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
         //Hide action bar
         getSupportActionBar().hide();
 
-        // TODO: Implementar sesiones y guardar el usuario.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
@@ -66,6 +65,10 @@ public class LoginActivity extends AppCompatActivity implements TaskCallback {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+
+        //TODO esto se tiene que quitar
+        emailText.setText("eli.emmanuel01@gmail.com");
+        passwordText.setText("elii");
     }
 
     public void login() {
