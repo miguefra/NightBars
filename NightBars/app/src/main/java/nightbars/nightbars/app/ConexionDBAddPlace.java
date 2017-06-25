@@ -35,7 +35,6 @@ public class ConexionDBAddPlace extends AsyncTask<String, Integer, Integer> {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://" + strings[0] + strings[1], "sql8170846", "6mgd7pf7cJ");
 
-            // TODO: Comprobar que no exista ese lugar.
             Statement estado = conn.createStatement();
             System.out.println("Conexion establecida");
             String peticion = "INSERT INTO Place(name, type, price, location, score) VALUES('"+ strings[2] + "', '" + strings[3] + "', "+ Integer.parseInt(strings[4]) + ", '" + strings[5] +"', "+ Integer.parseInt(strings[6]) + ")";

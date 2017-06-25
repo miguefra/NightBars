@@ -80,8 +80,8 @@ public class ConexionDBLogin extends AsyncTask<String, Integer, ResultSet> {
                     sessionManager.setLogin(true);
                     sessionManager.setUsername(result.getString("username"));
 
-                    Intent intent = new Intent(this.context, PlacesListActivity.class);
-                    this.context.startActivity(intent);
+                    //Intent intent = new Intent(this.context, PlacesListActivity.class);
+                    //this.context.startActivity(intent);
 
                     mCallback.done();
                 }

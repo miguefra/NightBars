@@ -55,7 +55,6 @@ public class AddActivity extends AppCompatActivity implements TaskCallback {
         }
         addPlaceButton.setEnabled(false);
 
-        // TODO: Añadir ubicación real.
         String name = nameText.getText().toString();
         String type = typeText.getText().toString();
         String price = priceText.getText().toString();

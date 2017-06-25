@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import nightbars.nightbars.R;
 import nightbars.nightbars.helper.AppConfig;
 
 public class ConexionDBListMenu extends AsyncTask<String, Integer, ResultSet> {
@@ -23,8 +22,8 @@ public class ConexionDBListMenu extends AsyncTask<String, Integer, ResultSet> {
         this.context = context;
         this.callback = callback;
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading Places...");
         progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading Places...");
     }
 
     @Override

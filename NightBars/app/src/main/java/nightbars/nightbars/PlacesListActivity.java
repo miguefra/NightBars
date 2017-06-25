@@ -1,5 +1,6 @@
 package nightbars.nightbars;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -78,10 +79,7 @@ public class PlacesListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // TODO: Hacer que funcione.
-        //this.navHeaderUsername.setText(sessionManager.getUsername());
-
-        listMenuController = ListMenuController.getInstance(PlacesListActivity.this, this);
+        listMenuController = ListMenuController.getInstance(this, this);
     }
 
     @Override
@@ -145,7 +143,7 @@ public class PlacesListActivity extends AppCompatActivity
         // Pintamos la lista de places
         adapter.setplaces(place);
         adapter.notifyDataSetChanged();
-        //recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

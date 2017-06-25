@@ -1,6 +1,5 @@
 package nightbars.nightbars.controllers;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
@@ -47,8 +46,6 @@ public class ListMenuController extends AppCompatActivity {
         return instance;
     }
 
-
-    // TODO: No buscar siempre de BBDD.
     public void getPlace() {
         new ConexionDBListMenu(this.context, new ConexionDBListMenu.RequestCallback() {
             @Override
@@ -72,7 +69,6 @@ public class ListMenuController extends AppCompatActivity {
 
             @Override
             public void onFail(String message) {
-                // TODO: Completar.
             }
         }).execute();
     }
