@@ -22,7 +22,7 @@ public class LocalActivity extends AppCompatActivity {
     public static final String PLACE_POSITION = "PLACE_POSITION";
     public static final String PLACE_NAME = "PLACE_NAME";
     private static int position;
-    //private PeopleDetailPresenter presenter;
+
     private TextView name;
     private TextView type;
     private TextView price;
@@ -30,7 +30,6 @@ public class LocalActivity extends AppCompatActivity {
     private TextView score;
     private ListView photos;
     private ListView reviews;
-    //ReviewsAdapter adapter;
 
     private String placeName;
 
@@ -50,11 +49,8 @@ public class LocalActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.place_name_detail);
         type = (TextView) findViewById(R.id.place_type_detail);
-        /*price = (TextView) findViewById(R.id.);
-        location = (TextView) findViewById(R.id.);
-        score = (TextView) findViewById(R.id.);
-        photos = (ListView) findViewById(R.id.);
-        reviews = (ListView) findViewById(R.id.);*/
+        price = (TextView) findViewById(R.id.p_price);
+        score = (TextView) findViewById(R.id.p_score);
 
         //adapter = new ReviewsAdapter();
         //reviews.setAdapter(adapter);
@@ -71,6 +67,8 @@ public class LocalActivity extends AppCompatActivity {
         placeName = place.getName();
         name.setText(placeName);
         type.setText(place.getType());
+        score.setText("Score: " + place.getScore());
+        price.setText("Price: " + place.getPrice());
 
         //adapter.setReviews(place.getReviews());
 

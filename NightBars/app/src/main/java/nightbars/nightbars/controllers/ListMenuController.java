@@ -56,9 +56,13 @@ public class ListMenuController extends AppCompatActivity {
 
                     String p = places.getString("name");
                     String j = places.getString("type");
+                    int s = places.getInt("score");
+                    int r = places.getInt("price");
 
                     place.setName(p);
                     place.setType(j);
+                    place.setScore(s);
+                    place.setPrice(r);
 
                     placeList.add(place);
                 } while (places.next());

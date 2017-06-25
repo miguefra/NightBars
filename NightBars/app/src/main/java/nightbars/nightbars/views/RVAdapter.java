@@ -36,20 +36,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
         CardView cv;
         private TextView placeName;
         private TextView placeType;
-        /*@InjectView(R.id.input_price)
-        EditText placePrice;
-        @InjectView(R.id.input_location)
-        EditText placeLocation;
-        @InjectView(R.id.input_score)
-        EditText placeScore;*/
-        //ImageView personPhoto;
 
         public PlaceViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             placeName = (TextView)itemView.findViewById(R.id.p_name);
             placeType = (TextView)itemView.findViewById(R.id.p_type);
-            //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+
             itemView.setOnClickListener(this);
         }
 
@@ -71,10 +64,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
     public void onBindViewHolder(PlaceViewHolder holder, int position) {
         holder.placeName.setText(places.get(position).getName());
         holder.placeType.setText(places.get(position).getType());
-        // TODO: Añadir los datos que faltan.
-        /*holder.placePrice.setText(String.valueOf(places.get(position).getPrice()));
-        holder.placeLocation.setText(places.get(position).getLocation());
-        holder.placeScore.setText(String.valueOf(places.get(position).getScore()));*/
     }
 
     @Override
