@@ -100,7 +100,9 @@ public class PlacesListActivity extends AppCompatActivity
         }
     }
 
-    @Override
+    //The above two methods add a menu on the top right corner of the list of places activity.
+    //Whenever it's necessary, we will implement those menu's. Uncomment to see the effect.
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.places_list, menu);
@@ -120,7 +122,7 @@ public class PlacesListActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
