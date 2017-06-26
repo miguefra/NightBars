@@ -15,24 +15,25 @@
             android:padding="16dp"
             android:background="?attr/selectableItemBackground">
 
-            <!--<ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/person_photo"
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/place_photo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"/>-->
+                android:layout_marginRight="16dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/p_name"
-                android:layout_alignParentLeft="true"
+                android:layout_toRightOf="@+id/place_photo"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/p_type"
+                android:layout_toRightOf="@+id/place_photo"
                 android:layout_below="@+id/p_name"/>
         </RelativeLayout>
 

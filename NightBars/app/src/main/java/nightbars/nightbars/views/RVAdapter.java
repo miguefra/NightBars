@@ -5,6 +5,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,12 +37,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
         CardView cv;
         private TextView placeName;
         private TextView placeType;
+        private ImageView placeImage;
 
         public PlaceViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             placeName = (TextView)itemView.findViewById(R.id.p_name);
             placeType = (TextView)itemView.findViewById(R.id.p_type);
+            placeImage = (ImageView)itemView.findViewById(R.id.place_photo);
 
             itemView.setOnClickListener(this);
         }
@@ -64,6 +67,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
     public void onBindViewHolder(PlaceViewHolder holder, int position) {
         holder.placeName.setText(places.get(position).getName());
         holder.placeType.setText(places.get(position).getType());
+        holder.placeImage.setImageResource(R.drawable.espit_chupitos);
     }
 
     @Override
