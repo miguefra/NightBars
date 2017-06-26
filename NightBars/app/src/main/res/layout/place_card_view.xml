@@ -35,6 +35,53 @@
                 android:id="@+id/p_type"
                 android:layout_toRightOf="@+id/place_photo"
                 android:layout_below="@+id/p_name"/>
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@+id/place_photo"
+                android:layout_below="@+id/p_type"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@+id/star1"
+                android:layout_below="@+id/p_type"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@+id/star2"
+                android:layout_below="@+id/p_type"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@+id/star3"
+                android:layout_below="@+id/p_type"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@+id/star4"
+                android:layout_below="@+id/p_type"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/star"
+                />
+
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

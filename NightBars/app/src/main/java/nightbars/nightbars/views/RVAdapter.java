@@ -38,6 +38,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
         private TextView placeName;
         private TextView placeType;
         private ImageView placeImage;
+        private ImageView star1Image;
+        private ImageView star2Image;
+        private ImageView star3Image;
+        private ImageView star4Image;
+        private ImageView star5Image;
 
         public PlaceViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +50,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
             placeName = (TextView)itemView.findViewById(R.id.p_name);
             placeType = (TextView)itemView.findViewById(R.id.p_type);
             placeImage = (ImageView)itemView.findViewById(R.id.place_photo);
+            star1Image = (ImageView)itemView.findViewById(R.id.star1);
+            star2Image = (ImageView)itemView.findViewById(R.id.star2);
+            star3Image = (ImageView)itemView.findViewById(R.id.star3);
+            star4Image = (ImageView)itemView.findViewById(R.id.star4);
+            star5Image = (ImageView)itemView.findViewById(R.id.star5);
 
             itemView.setOnClickListener(this);
         }
@@ -68,6 +78,44 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
         holder.placeName.setText(places.get(position).getName());
         holder.placeType.setText(places.get(position).getType());
         holder.placeImage.setImageResource(R.drawable.espit_chupitos);
+
+        if (places.get(position).getScore() == 5) {
+            holder.star1Image.setVisibility(View.VISIBLE);
+            holder.star2Image.setVisibility(View.VISIBLE);
+            holder.star3Image.setVisibility(View.VISIBLE);
+            holder.star4Image.setVisibility(View.VISIBLE);
+            holder.star5Image.setVisibility(View.VISIBLE);
+        } else if (places.get(position).getScore() == 4) {
+            holder.star1Image.setVisibility(View.VISIBLE);
+            holder.star2Image.setVisibility(View.VISIBLE);
+            holder.star3Image.setVisibility(View.VISIBLE);
+            holder.star4Image.setVisibility(View.VISIBLE);
+            holder.star5Image.setVisibility(View.INVISIBLE);
+        } else if (places.get(position).getScore() == 3) {
+            holder.star1Image.setVisibility(View.VISIBLE);
+            holder.star2Image.setVisibility(View.VISIBLE);
+            holder.star3Image.setVisibility(View.VISIBLE);
+            holder.star4Image.setVisibility(View.INVISIBLE);
+            holder.star5Image.setVisibility(View.INVISIBLE);
+        } else if (places.get(position).getScore() == 2) {
+            holder.star1Image.setVisibility(View.VISIBLE);
+            holder.star2Image.setVisibility(View.VISIBLE);
+            holder.star3Image.setVisibility(View.INVISIBLE);
+            holder.star4Image.setVisibility(View.INVISIBLE);
+            holder.star5Image.setVisibility(View.INVISIBLE);
+        } else if (places.get(position).getScore() == 1) {
+            holder.star1Image.setVisibility(View.VISIBLE);
+            holder.star2Image.setVisibility(View.INVISIBLE);
+            holder.star3Image.setVisibility(View.INVISIBLE);
+            holder.star4Image.setVisibility(View.INVISIBLE);
+            holder.star5Image.setVisibility(View.INVISIBLE);
+        } else {
+            holder.star1Image.setVisibility(View.INVISIBLE);
+            holder.star2Image.setVisibility(View.INVISIBLE);
+            holder.star3Image.setVisibility(View.INVISIBLE);
+            holder.star4Image.setVisibility(View.INVISIBLE);
+            holder.star5Image.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
