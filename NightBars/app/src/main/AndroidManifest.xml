@@ -31,6 +31,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".PlacesListActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_places_list"
             android:theme="@style/AppTheme.NoActionBar"
             android:allowBackup="true">

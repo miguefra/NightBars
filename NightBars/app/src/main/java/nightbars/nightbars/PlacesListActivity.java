@@ -2,6 +2,7 @@ package nightbars.nightbars;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -80,6 +82,12 @@ public class PlacesListActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         listMenuController = ListMenuController.getInstance(this, this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        
     }
 
     @Override
