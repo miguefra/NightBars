@@ -77,7 +77,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PlaceViewHolder> {
     public void onBindViewHolder(PlaceViewHolder holder, int position) {
         holder.placeName.setText(places.get(position).getName());
         holder.placeType.setText(places.get(position).getType());
-        holder.placeImage.setImageResource(R.drawable.espit_chupitos);
+        holder.placeImage.setImageResource(R.drawable.app_logo);
 
         if (places.get(position).getScore() == 5) {
             holder.star1Image.setVisibility(View.VISIBLE);

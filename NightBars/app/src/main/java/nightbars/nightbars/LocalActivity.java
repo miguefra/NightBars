@@ -1,12 +1,22 @@
 package nightbars.nightbars;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +41,10 @@ public class LocalActivity extends AppCompatActivity {
     private ListView photos;
     private ListView reviews;
 
+
+    private ImageView place_photo;
+    private ImageView expanded_photo;
+
     private String placeName;
 
     @Override
@@ -52,8 +66,20 @@ public class LocalActivity extends AppCompatActivity {
         price = (TextView) findViewById(R.id.p_price);
         score = (TextView) findViewById(R.id.p_score);
 
+        place_photo = (ImageButton) findViewById(R.id.place_profile_photo);
+        place_photo.setBackgroundResource(R.color.cardview_light_background);
+        place_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LocalActivity.this, ShowImageActivity.class);
+                intent.putExtra("img_id", R.drawable.app_logo);
+                startActivityForResult(intent,0);
+            }
+        });
+
         //adapter = new ReviewsAdapter();
         //reviews.setAdapter(adapter);
+
     }
 
     @Override
@@ -129,4 +155,6 @@ public class LocalActivity extends AppCompatActivity {
             this.reviews = hobbies;
         }
     }*/
+
+
 }

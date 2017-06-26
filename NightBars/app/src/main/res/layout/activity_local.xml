@@ -22,6 +22,15 @@
             android:padding="16dp"
             android:gravity="center">
 
+            <ImageButton
+                android:id="@+id/place_profile_photo"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/app_logo"
+                />
+
+
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_detail"
                 android:layout_width="match_parent"
@@ -118,8 +127,10 @@
                     android:text="Como llegar"
                     android:textColor="#ffffff"/>
 
+
         </LinearLayout>
 
 
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
+

@@ -51,6 +51,11 @@
             android:label="Maps"
             android:theme="@style/AppTheme">
         </activity>
+        <activity
+            android:name=".ShowImageActivity"
+            android:label="Show Image"
+            android:theme="@style/AppTheme"
+            />
     </application>
 
 </manifest>
